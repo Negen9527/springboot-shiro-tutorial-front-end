@@ -38,11 +38,13 @@
         <template slot-scope="scope">
           <el-button
             size="mini"
-            @click="handleEdit(scope.$index, scope.row)">分配角色</el-button>
+            @click="handleEdit(scope.$index, scope.row)"
+          >分配角色</el-button>
           <el-button
             size="mini"
             type="danger"
-            @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            @click="handleDelete(scope.$index, scope.row)"
+          >删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -73,6 +75,7 @@
 
 <script>
 import { getAll } from '@/api/user'
+import { getListTree } from '@/api/role'
 
 export default {
   filters: {
@@ -125,7 +128,9 @@ export default {
     handleEdit(index, row) {
       this.dialogFormVisible = true
       this.form.permissionIds = []
-      // console.log(index, row)
+      getListTree().then(response => {
+        this.treeData = response.data
+      })
     },
     handleDelete(index, row) {
       this.checkedKeys = []

@@ -30,3 +30,11 @@ export function listPermissionIdsByRoleId(roleId) {
     params: { roleId }
   })
 }
+
+export function getListTree(token) {
+  return request({
+    url: '/role/list/tree',
+    method: 'get',
+    params: { token }
+  })
+}
